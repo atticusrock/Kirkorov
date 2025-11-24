@@ -18,13 +18,18 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Handles incoming messages and responds based on keywords."""
     text = update.message.text.lower()
+    words = text.split()
 
-    if "да" in text:
-        await update.message.reply_text("Пизда")
-    elif "нет" in text:
-        await update.message.reply_text("Пидора ответ")
-    elif "триста" in text or "300" in text:
-        await update.message.reply_text("Отсоси у тракториста")
+    for word in words:
+        if word == "да":
+            await update.message.reply_text("Пизда")
+            return # Отвечаем только один раз на первое совпадение
+        elif word == "нет":
+            await update.message.reply_text("Пидора ответ")
+            return
+        elif word == "триста" or word == "300":
+            await update.message.reply_text("Отсоси у тракториста")
+            return
 
 def main() -> None:
     """Start the bot."""

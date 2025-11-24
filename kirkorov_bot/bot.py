@@ -1,15 +1,20 @@
 import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
+import os
+from dotenv import load_dotenv
 
 # Enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
 )
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Set up your bot token here. Replace 'YOUR_BOT_TOKEN' with your actual bot token.
 # You can get a bot token from BotFather on Telegram.
-BOT_TOKEN = "8454130806:AAHT4Cx2i0KGcSAHrEGPZkPTmcCWynihA-I"
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     """Sends a message when the command /start is issued."""
